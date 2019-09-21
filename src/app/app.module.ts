@@ -16,11 +16,13 @@ import { ToastProvider } from '../providers/toast/toast';
 import { AssessmentsPage } from '../pages/assessments/assessments';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DataProvider } from '../providers/data/data.provider';
+import { SpiritEmojiPage } from '../pages/spirit-emoji/spirit-emoji';
 
 @NgModule({
   declarations: [
     MyApp,
-    AssessmentsPage
+    AssessmentsPage,
+    SpiritEmojiPage,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { DataProvider } from '../providers/data/data.provider';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AssessmentsPage
+    AssessmentsPage,
+    SpiritEmojiPage,
   ],
   providers: [
     StatusBar,

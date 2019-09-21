@@ -88,7 +88,7 @@ export class DataProvider {
     this.activeAssessment = assessment
   }
 
-  addAssessment () {
+  async addAssessment () {
     const assessment: Assessment = {
       createDate: new Date().toString(),
       kidId: this.activeKid.$key,
@@ -96,6 +96,12 @@ export class DataProvider {
       painAreas: []
     }
 
-    this.assessmentsRef.push(assessment)
+    const ref = await this.assessmentsRef.push(assessment)
+    
+    return {
+      ...assessment,
+      $ref: ref,
+      $key: ref.key
+    }
   }
 }

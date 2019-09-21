@@ -4,6 +4,7 @@ import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data.provider';
+import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 
 /**
  * Generated class for the HomePage page.
@@ -34,9 +35,10 @@ export class HomePage {
         this.navCtrl.setRoot('WelcomePage');
   }
 
-  startAssessment () {
-    this.dataProvider.addAssessment()
-    // TODO: navigate to the assessment screen
+  async startAssessment () {
+    const assessment = await this.dataProvider.addAssessment()
+    this.dataProvider.activateAssessment(assessment)
+    this.navCtrl.push(SpiritEmojiPage, {assessment})
   }
 
   isAnonymous(): boolean {
