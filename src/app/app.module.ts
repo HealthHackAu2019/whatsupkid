@@ -13,6 +13,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebaseConfig';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AuthProvider } from '../providers/auth/auth';
+import { AlertProvider } from '../providers/alert/alert';
+import { ToastProvider } from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthProvider } from '../providers/auth/auth';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
-    AuthProvider
+    AuthProvider,
+    AlertProvider,
+    ToastProvider
   ]
 })
 export class AppModule {}
