@@ -25,6 +25,12 @@ export class AuthProvider {
       return result;
   }
 
+  async loginAnonymously(): Promise<any> {
+    const result = await this.afAuth.auth.signInAnonymously();
+    console.log('result: ', result);
+    return result;
+  }
+
   logout(): void {
     this.afAuth.auth.signOut();
   }

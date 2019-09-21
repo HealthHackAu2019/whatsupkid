@@ -28,6 +28,6 @@ export class HomePage {
         console.log('App Component Logged out...');
         this.authProvider.logout();
         this.toastProvider.showToast(`You have been logged out. Come back soon.`)
-        this.navCtrl.setRoot('LoginPage');
+        this.navCtrl.setRoot('WelcomePage');
   }
 }
