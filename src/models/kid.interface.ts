@@ -6,4 +6,6 @@ export interface Kid {
 	name: string
 	spiritEmoji: string
 	createDate: string
+	userId: string
+	colour: string
 }

@@ -28,17 +28,13 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
+
+
   logout() {
         console.log('App Component Logged out...');
         this.authProvider.logout();
         this.toastProvider.showToast(`You have been logged out. Come back soon.`)
         this.navCtrl.setRoot('WelcomePage');
-  }
-
-  async startAssessment () {
-    const assessment = await this.dataProvider.addAssessment()
-    this.dataProvider.activateAssessment(assessment)
-    this.navCtrl.push(SpiritEmojiPage, {assessment})
   }
 
   isAnonymous(): boolean {

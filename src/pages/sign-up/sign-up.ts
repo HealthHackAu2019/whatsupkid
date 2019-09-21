@@ -4,6 +4,8 @@ import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ToastProvider } from '../../providers/toast/toast';
+import { DataProvider } from '../../providers/data/data.provider';
+import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 
 /**
  * Generated class for the SignUpPage page.

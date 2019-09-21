@@ -18,18 +18,19 @@ export class AuthProvider {
     });
   }
 
-  async createUser(user): Promise<any> {
+  async createUser(user) {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
       console.log('result: ', result);
+      return result
   }
 
-  async login(user): Promise<any> {
+  async login(user) {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       console.log('result: ', result);
       return result;
   }
 
-  async loginAnonymously(): Promise<any> {
+  async loginAnonymously() {
     const result = await this.afAuth.auth.signInAnonymously();
     console.log('result: ', result);
     return result;
@@ -39,7 +40,7 @@ export class AuthProvider {
     this.afAuth.auth.signOut();
   }
 
-  currentUser(): Promise<any> {
+  currentUser() {
     return this.user;
   }
 

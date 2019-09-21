@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
+import { DataProvider } from '../../providers/data/data.provider';
+import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 
 /**
  * Generated class for the WelcomePage page.
@@ -17,7 +19,7 @@ import { AlertProvider } from '../../providers/alert/alert';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
@@ -43,5 +45,25 @@ export class WelcomePage {
         console.log('LoginPage:err', error);
       })
   }
+
+    // Should only fire if there is no currently logged in user
+    async chooseColourAndRegisterKidAndStartAssessment (colour: any) {
+      // Register kid as a user
+      const result = await this.authProvider.loginAnonymously()
+  
+      // Create kid object to store the kid's deets
+      const kid = await this.dataProvider.addKid(result.user.uid, colour)
+  
+      // Set kid record as the one currently logged in
+      this.dataProvider.activateKid(kid)
+
+      // Create assessment
+      this.dataProvider.loadAssessments()
+      const assessment = await this.dataProvider.addAssessment()
+      this.dataProvider.activateAssessment(assessment)
+  
+      // Push off to first assessment page
+      this.navCtrl.push(SpiritEmojiPage, {assessment})
+    }
 
 }

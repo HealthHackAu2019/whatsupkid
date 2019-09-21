@@ -29,6 +29,7 @@ export class DataProvider {
   activeAssessment: Assessment
   
   constructor(private database: AngularFireDatabase) {
+    this.loadKids() // Can load kids straight away as there's no data dep
   }
 
   update (entity: any, key: string, value: any) {
@@ -58,18 +59,31 @@ export class DataProvider {
     this.activeKid = kid
   }
 
-  addKid () {
-    this.kidsRef.push({
+  async addKid (userId: string, colour: string): Promise<Kid> {
+    const kid = {
       createDate: new Date().toString(),
       name: "Unnamed",
+      userId,
+      colour,
       spiritEmoji: '🐱‍👤'
-    })
+    }
+
+    const ref = await this.kidsRef.push(kid)
+
+    return {
+      ...kid,
+      $ref: ref,
+      $key: ref.key
+    }
   }
 
   /*💠 Assessment Stuff */
 
   loadAssessments () {
-    // this.assessmentsRef = this.database.list('assessments')
+    if (!this.activeKid) {
+      throw new Error('Must have an active kid to load assessments. Call dataProvider.activateKid(kid) first')
+    }
+
     this.assessmentsRef = this.database.list('assessments', ref => ref.orderByChild('kidId').equalTo(this.activeKid.$key))
 
     this.assessmentsChangeFeed = this.assessmentsRef.snapshotChanges()
@@ -94,6 +108,7 @@ export class DataProvider {
       createDate: new Date().toString(),
       kidId: this.activeKid.$key,
       mood: 'meh',
+      painLevel: Math.floor(Math.random() * 10),
       painAreas: []
     }
 
@@ -104,5 +119,9 @@ export class DataProvider {
       $ref: ref,
       $key: ref.key
     }
+  }
+
+  resolveObservable<T>(observable: Observable<T>): Promise<T> {
+    return new Promise(resolve => observable.subscribe(results => resolve(results)))
   }
 }

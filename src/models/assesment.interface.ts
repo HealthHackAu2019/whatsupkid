@@ -5,6 +5,7 @@ export interface Assessment {
 	$ref?: DatabaseSnapshot<Assessment>['ref']
 	kidId: string
 	mood: string
+	painLevel: number // just for example
 	painAreas: PainArea[]
 	createDate: string
 }

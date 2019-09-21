@@ -4,6 +4,8 @@ import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
+import { DataProvider } from '../../providers/data/data.provider';
+import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,12 +21,15 @@ import { AlertProvider } from '../../providers/alert/alert';
 
 export class LoginPage {
   user = {} as User
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  
+
 
   async login(user: User) {
     const result = await this.authProvider.login(user)
