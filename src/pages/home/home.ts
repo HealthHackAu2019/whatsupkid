@@ -30,4 +30,8 @@ export class HomePage {
         this.toastProvider.showToast(`You have been logged out. Come back soon.`)
         this.navCtrl.setRoot('WelcomePage');
   }
+
+  isAnonymous(): boolean {
+    return this.authProvider.isCurrentUserAnonymous();
+  }
 }

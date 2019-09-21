@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth'
+import { Observable } from 'rxjs';
 
 /*
   Generated class for the AuthProvider provider.
@@ -9,9 +10,12 @@ import { AngularFireAuth } from 'angularfire2/auth'
 */
 @Injectable()
 export class AuthProvider {
-
+  user: any;
   constructor(private afAuth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
+    afAuth.user.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   async createUser(user): Promise<any> {
@@ -33,6 +37,14 @@ export class AuthProvider {
 
   logout(): void {
     this.afAuth.auth.signOut();
+  }
+
+  currentUser(): Promise<any> {
+    return this.user;
+  }
+
+  isCurrentUserAnonymous(): boolean {
+    return this.user ? this.user.isAnonymous : false
   }
 
 }
