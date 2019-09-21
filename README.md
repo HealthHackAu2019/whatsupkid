@@ -6,3 +6,4 @@ It attempts to solve the problem of kids struggling to vocalise their symptoms o
 
 # Contributers
 
+### Ionic 
