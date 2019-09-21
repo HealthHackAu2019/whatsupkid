@@ -5,6 +5,7 @@
 // import { HomePage } from '../home/home';
 // import { KidsPage } from '../kids/kids';
 // import { IonicPage } from 'ionic-angular';
+// import { DashboardPage } from '../dashboard/dashboard';
 
 // @IonicPage(
 //   {name: 'tabs-page'}
@@ -33,10 +34,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'tabs.html',
 })
 export class TabsPage {
-  
+
   tab1Root = 'HomePage';
   tab2Root = 'AboutPage';
-  tab3Root = 'ContactPage';
+  tab3Root = 'DashboardPage';
   tab4Root = 'KidsPage';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
