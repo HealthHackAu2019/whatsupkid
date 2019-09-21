@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the SignUpPage page.
@@ -16,7 +17,7 @@ import { User } from '../../models/user';
 })
 export class SignUpPage {
   user = {} as User
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -25,9 +26,8 @@ export class SignUpPage {
 
   async signup(user: User) {
     try {
-      // const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      // console.log('result: ', result);
-    } catch(e) {
+      this.authProvider.createUser(user)
+    } catch (e) {
       console.error(e);
     }
   }
