@@ -1,31 +1,24 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from "chart.js";
 
-/**
- * Generated class for the ContactPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html',
+  selector: 'page-dashboard',
+  templateUrl: 'dashboard.html',
 })
-export class ContactPage {
+export class DashboardPage {
   @ViewChild("lineCanvas1") lineCanvas1: ElementRef;
   @ViewChild("barCanvas1") barCanvas1: ElementRef;
 
-  private lineChart: Chart;
-  private barChart: Chart;
+  // private lineChart: Chart;
+  // private barChart: Chart;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactPage');
+    console.log('ionViewDidLoad DashboardPage');
 
     this.lineChart = new Chart(this.lineCanvas1.nativeElement, {
           type: "line",
