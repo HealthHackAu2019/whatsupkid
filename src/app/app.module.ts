@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs-compat';
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -13,6 +15,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from './firebaseConfig';
+import { KidsPage } from '../pages/kids/kids';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -20,12 +24,14 @@ import { FIREBASE_CONFIG } from './firebaseConfig';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    KidsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FIREBASE_CONFIG)
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +39,8 @@ import { FIREBASE_CONFIG } from './firebaseConfig';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    KidsPage
   ],
   providers: [
     StatusBar,

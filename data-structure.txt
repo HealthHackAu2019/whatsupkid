@@ -1,0 +1,12 @@
+Kid
+	name
+	room
+	
+	createDt
+	Assessments
+
+Assessment
+	createDt
+	mood
+	temperature
+	emogi
