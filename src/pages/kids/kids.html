@@ -11,9 +11,34 @@
 </ion-header>
 
 <ion-content padding>
-  <ul>
+  <button ion-button block (click)="addKid()">Add Kid</button>
+
+  <!-- <ul>
     <li *ngFor="let kid of kids | async">
        {{ kid | json }}
     </li>
-  </ul>
+  </ul> -->
+
+  <div>
+    <ngx-datatable
+      class="material"
+      [rows]="kids | async"
+      [columns]="columns">
+
+      <ngx-datatable-column *ngFor="let col of columns" [name]="col.name">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Actions" sortable="false" prop="$key">
+        <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+          <button md-icon-button (click)="navigateToAssessments(value)">
+            <i class="fa fa-ban">Assessments</i>
+          </button>
+
+          <button md-icon-button (click)="delete(value)">
+            <i class="fa fa-ban">Delete</i>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 </ion-content>

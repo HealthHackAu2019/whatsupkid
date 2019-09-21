@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs-compat';
-
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -15,22 +13,27 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebaseConfig';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AuthProvider } from '../providers/auth/auth';
+import { AssessmentsPage } from '../pages/assessments/assessments';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
+    AssessmentsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgxDatatableModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     TabsPage,
+    AssessmentsPage
   ],
   providers: [
     StatusBar,
