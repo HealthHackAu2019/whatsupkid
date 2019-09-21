@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>💠 Assessments for {{assessmentProvider.kid.name}}</ion-title>
+    <ion-title>💠 Assessments for {{dataProvider.activeKid.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
     rowHeight="55"
     columnMode="force"
     class="material"
-    [rows]="assessmentProvider.assessments | async"
+    [rows]="dataProvider.assessments | async"
     [columns]="columns">
     
     <!-- Display columns -->
@@ -31,7 +31,7 @@
       </ng-template>
 
       <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
-        <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="assessmentProvider.update(row, col.prop, $event)"></ion-input>
+        <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="dataProvider.update(row, col.prop, $event)"></ion-input>
       </ng-template>
 
       <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
@@ -49,6 +49,6 @@
     </ngx-datatable-column>
   </ngx-datatable>
 
-  <button ion-button block (click)="assessmentProvider.add()">Add Assessment</button>
+  <button ion-button block (click)="dataProvider.addAssessment()">Add Assessment</button>
 </div>
 </ion-content>

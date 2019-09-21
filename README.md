@@ -22,8 +22,8 @@ ionic serve --l
 # Architecture
 - The different screens are sorted into pages
 - You can changes the ux of the pages by editing the html and scss in `src/pages/{page}`
-- The data for each entity is managed through providers in `src/providers/{entity}`
-- To get access to a new bit of data simply inject the service into the page component, or initialise it in the constructor if it's a dynamic service
+- The data is managed in a data service, which is responsible for loading and storing the data the application needs
+- It may be necessary at some point to split the data providers out by entity (AssessmentProvider, KidProvider, etc) but for the same of speed it's all together at the moment
 
 # Contributers
 

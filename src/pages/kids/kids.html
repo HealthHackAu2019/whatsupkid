@@ -16,7 +16,7 @@
       rowHeight="55"
       columnMode="force"
       class="material"
-      [rows]="kidProvider.kids | async"
+      [rows]="dataProvider.kids | async"
       [columns]="columns">
 
       <!-- Display columns -->
@@ -26,7 +26,7 @@
         </ng-template>
 
         <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
-          <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="kidProvider.update(row, col.prop, $event)"></ion-input>
+          <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="dataProvider.update(row, col.prop, $event)"></ion-input>
         </ng-template>
 
         <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
@@ -48,5 +48,5 @@
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
-  <button ion-button block (click)="kidProvider.add()">Add Kid</button>
+  <button ion-button block (click)="dataProvider.addKid()">Add Kid</button>
 </ion-content>

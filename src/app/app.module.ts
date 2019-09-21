@@ -15,7 +15,7 @@ import { AlertProvider } from '../providers/alert/alert';
 import { ToastProvider } from '../providers/toast/toast';
 import { AssessmentsPage } from '../pages/assessments/assessments';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { KidProvider } from '../providers/kid/kid';
+import { DataProvider } from '../providers/data/data.provider';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { KidProvider } from '../providers/kid/kid';
     AuthProvider,
     AlertProvider,
     ToastProvider,
-    KidProvider
+    DataProvider
   ]
 })
 export class AppModule {}

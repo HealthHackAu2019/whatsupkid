@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase} from '@angular/fire/database';
-import { AssessmentProvider, assessmentProviderFactory } from '../../providers/assessment/assessment';
+import { DataProvider } from '../../providers/data/data.provider';
 
 /**
  * Generated class for the AssessmentsPage page.
@@ -16,19 +16,14 @@ import { AssessmentProvider, assessmentProviderFactory } from '../../providers/a
   templateUrl: 'assessments.html',
 })
 export class AssessmentsPage {
-  assessmentProvider: AssessmentProvider
-  
   columns = [
     { name: 'Date', prop: 'createDate'},
     { name: 'Mood' },
     { name: 'Pain Areas' },
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
-    this.assessmentProvider = assessmentProviderFactory(this.navParams.get('kid'), database)
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AssessmentsPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataProvider: DataProvider) {
+    this.dataProvider.activateKid(navParams.get('kid'))
+    this.dataProvider.loadAssessments()
   }
 }
