@@ -102,12 +102,15 @@ export class DashboardPage {
       },
       options: {
         scales: {
+          xAxes: [
+            {
+							stacked: true,
+						}
+          ],
           yAxes: [
             {
-              ticks: {
-                beginAtZero: true
-              }
-            }
+              stacked: true,
+            },
           ]
         },
       }
@@ -150,12 +153,15 @@ export class DashboardPage {
       },
       options: {
         scales: {
+          xAxes: [
+            {
+							stacked: true,
+						}
+          ],
           yAxes: [
             {
-              ticks: {
-                beginAtZero: true
-              }
-            }
+              stacked: true,
+            },
           ]
         },
       }
