@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.2",
+    "angularfire2": "^5.2.1",
+    "firebase": "^6.6.2",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project"
