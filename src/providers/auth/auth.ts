@@ -14,9 +14,15 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
-  async createUser(user) {
+  async createUser(user): Promise<any> {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
       console.log('result: ', result);
+  }
+
+  async login(user): Promise<any> {
+      const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+      console.log('result: ', result);
+      return result;
   }
 
 }

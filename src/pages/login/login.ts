@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
+import { AuthProvider } from '../../providers/auth/auth';
 /**
  * Generated class for the LoginPage page.
  *
@@ -8,7 +9,7 @@ import { User } from '../../models/user';
  * Ionic pages and navigation.
  */
 
- @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -16,7 +17,7 @@ import { User } from '../../models/user';
 
 export class LoginPage {
   user = {} as User
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -24,15 +25,16 @@ export class LoginPage {
   }
 
   async login(user: User) {
-    // try {
-    // const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
-    // if (result) {
-    //   this.navCtrl.push('TabsPage');
-    // }
-    // } catch(e) {
-    //   console.error(e);
-    // } 
+    const result = await this.authProvider.login(user)
+    try {
+      if (result) {
+        this.navCtrl.push('TabsPage');
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
+  
   goToSignup() {
     this.navCtrl.push('SignUpPage')
   }
