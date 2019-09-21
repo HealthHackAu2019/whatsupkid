@@ -10,9 +10,11 @@ import { Chart } from "chart.js";
 export class DashboardPage {
   @ViewChild("lineCanvas1") lineCanvas1: ElementRef;
   @ViewChild("barCanvas1") barCanvas1: ElementRef;
+  @ViewChild("barCanvas2") barCanvas2: ElementRef;
 
-  // private lineChart: Chart;
-  // private barChart: Chart;
+  private lineChart1: Chart;
+  private barChart1: Chart;
+  private barChart2: Chart;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -20,7 +22,7 @@ export class DashboardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
 
-    this.lineChart = new Chart(this.lineCanvas1.nativeElement, {
+    this.lineChart1 = new Chart(this.lineCanvas1.nativeElement, {
           type: "line",
           data: {
             labels: ["12pm", "4pm", "8pm", "9am", "12pm", "3pm", "6pm", "11pm", "7am"],
@@ -56,25 +58,46 @@ export class DashboardPage {
           },
         });
 
-    this.barChart = new Chart(this.barCanvas1.nativeElement, {
+    this.barChart1 = new Chart(this.barCanvas1.nativeElement, {
       type: "bar",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["12pm", "4pm", "8pm", "9am", "12pm", "3pm", "6pm", "11pm", "7am"],
         datasets: [
           {
-            data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+            label: "Too Hot",
+            data: [0, 1, 0, 1, 1, 0, 0, 0, 1],
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255,99,132,1)",
-            // [
-              // "rgba(255, 99, 132, 0.2)",
-              // "rgba(54, 162, 235, 0.2)",
-              // "rgba(255, 206, 86, 0.2)",
-              // "rgba(75, 192, 192, 0.2)",
-              // "rgba(153, 102, 255, 0.2)",
-              // "rgba(255, 159, 64, 0.2)"
-            // ],
             borderWidth: 1
-          }
+          },
+          {
+            label: "Too Cold",
+            data: [0, 1, 1, 0, 0, 0, 0, 1, 1],
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1
+          },
+          {
+            label: "Itchy",
+            data: [1, 1, 1, 0, 0, 0, 0, 0, 0],
+            backgroundColor: "rgba(255, 206, 86, 0.2)",
+            borderColor: "rgba(255, 206, 86, 1)",
+            borderWidth: 1
+          },
+          {
+            label: "Nausea",
+            data: [0, 0, 1, 1, 1, 1, 0, 0, 0],
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1
+          },
+          {
+            label: "Lethargy",
+            data: [1, 0, 1, 0, 0, 0, 0, 0, 0],
+            backgroundColor: "rgba(153, 102, 255, 0.2)",
+            borderColor: "rgba(153, 102, 255, 1)",
+            borderWidth: 1
+          },
         ]
       },
       options: {
@@ -87,10 +110,56 @@ export class DashboardPage {
             }
           ]
         },
-        legend: {
-            display: false
-         },
       }
     });
+
+    this.barChart2 = new Chart(this.barCanvas2.nativeElement, {
+      type: "bar",
+      data: {
+        labels: ["12pm", "4pm", "8pm", "9am", "12pm", "3pm", "6pm", "11pm", "7am"],
+        datasets: [
+          {
+            label: "Water",
+            data: [1, 1, 0, 1, 1, 0, 0, 1, 1],
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 1
+          },
+          {
+            label: "Food",
+            data: [0, 1, 0, 0, 0, 0, 0, 0, 1],
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1
+          },
+          {
+            label: "Toilet",
+            data: [1, 0, 1, 0, 1, 0, 1, 0, 1],
+            backgroundColor: "rgba(255, 206, 86, 0.2)",
+            borderColor: "rgba(255, 206, 86, 1)",
+            borderWidth: 1
+          },
+          {
+            label: "Wash",
+            data: [1, 0, 0, 1, 0, 0, 0, 0, 1],
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1
+          },
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        },
+      }
+    });
+
   }
 }
