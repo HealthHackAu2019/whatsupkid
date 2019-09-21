@@ -26,8 +26,7 @@
       </ng-template>
 
       <ng-template *ngIf = "col.name === 'Pain Areas'" let-row="row" let-value="value" ngx-datatable-cell-template>
-          <span *ngFor="let painArea of painAreas">{{painArea.location}}: {{painArea.intensity}}/5</span>
-          {{value | date: 'dd/MM/yyyy hh:mmaa'}}
+          <span *ngFor="let painArea of row.painAreas">{{painArea.location}}: {{painArea.intensity}}/5</span>, 
       </ng-template>
 
       <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>

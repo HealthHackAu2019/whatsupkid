@@ -12,4 +12,22 @@
 
 <ion-content padding>
     {{dataProvider.activeAssessment.$key}}
+
+    <ion-input 
+      [ngModel]='dataProvider.activeKid.spiritEmoji'
+      (ngModelChange)="dataProvider.activeKid.$ref.update({spiritEmoji: $event})">
+    </ion-input>
+
+    <ion-input 
+    [ngModel]='dataProvider.activeAssessment.mood'
+    (ngModelChange)="dataProvider.activeAssessment.$ref.update({mood: $event})">
+  </ion-input>
+
+  <button 
+    ion-button
+    small
+    (click)="dataProvider.update(dataProvider.activeAssessment, 'painAreas', dataProvider.activeAssessment.painAreas.concat([{intensity: 0, location: 'HEAD'}]))"
+  >
+      Add Pain Area
+  </button>
 </ion-content>

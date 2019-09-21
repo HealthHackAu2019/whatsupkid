@@ -32,6 +32,7 @@ export class DataProvider {
   }
 
   update (entity: any, key: string, value: any) {
+    entity[key] = value
     entity.$ref.update({[key]: value})
   }
 
