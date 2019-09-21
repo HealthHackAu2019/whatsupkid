@@ -6,39 +6,47 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>kids</ion-title>
+    <ion-title>🐱‍👤 Kids</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block (click)="addKid()">Add Kid</button>
-
-  <!-- <ul>
-    <li *ngFor="let kid of kids | async">
-       {{ kid | json }}
-    </li>
-  </ul> -->
-
   <div>
     <ngx-datatable
+      rowHeight="55"
+      columnMode="force"
       class="material"
       [rows]="kids | async"
       [columns]="columns">
 
-      <ngx-datatable-column *ngFor="let col of columns" [name]="col.name">
+      <!-- Display columns -->
+      <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop">
+        <ng-template *ngIf = "col.name === 'Date'" let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value | date: 'dd/MM/yyyy hh:mmaa'}}
+        </ng-template>
+
+        <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+          <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="update(row, col.prop, $event)"></ion-input>
+        </ng-template>
+
+        <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Actions" sortable="false" prop="$key">
-        <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-          <button md-icon-button (click)="navigateToAssessments(value)">
-            <i class="fa fa-ban">Assessments</i>
+      <!-- Button columns -->
+      <ngx-datatable-column  name="Actions" sortable="false" prop="$key">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <button ion-button small (click)="navigateToAssessments(row)">
+            <i class="fa fa-ban">ViewAssessments</i>
           </button>
 
-          <button md-icon-button (click)="delete(value)">
+          <button ion-button color="danger" small (click)="row.$ref.remove()">
             <i class="fa fa-ban">Delete</i>
           </button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
+  <button ion-button block (click)="add()">Add Kid</button>
 </ion-content>

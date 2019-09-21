@@ -15,23 +15,13 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-/*
-  This stylesheet uses scss valiables for most of the colors / background-colors of the table
-  to enable the customization of the displayed table without cloning the stylesheet into the
-  own application.
+.ngx-datatable {
+  .data-table-input input{
+    border-bottom: solid #80808045 1px
+  }
+}
 
-  To modify table colors, add the following lines to the scss file of your application
-  (this example modifies the color of the selected row - selectionType = single, multi or multiClick):
-
-  $ngx-datatable-selected-active-background: yellow;
-  $ngx-datatable-selected-active-background-hover: rgba(yellow, 0.2);
-
-  @import '~@swimlane/ngx-datatable/index.css';
-  @import '~@swimlane/ngx-datatable/themes/material.scss';
-  @import '~@swimlane/ngx-datatable/assets/icons.css';
-
-That's all.
-*/
+/* Stuff copy pasted from nxg module because I couldn't get the scss import working */
 
 .ngx-datatable {
 	display: block;

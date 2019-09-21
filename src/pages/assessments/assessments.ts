@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from '@angular/fire/database';
 import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs/operators';
+import {Assessment} from '../../models/assesment.interface'
+import { Kid } from '../../models/kid.interface';
 
 /**
  * Generated class for the AssessmentsPage page.
@@ -17,14 +19,14 @@ import { map } from 'rxjs/operators';
   templateUrl: 'assessments.html',
 })
 export class AssessmentsPage {
-
   assessments: Observable<Assessment[]>
   assessmentsRef: AngularFireList<Assessment>
   assessmentsChangeFeed: Observable<AngularFireAction<DatabaseSnapshot<Assessment>>[]>
   
   columns = [
-    { name: 'Date', prop: 'createDate' },
-    { name: 'Emogi' },
+    { name: 'Date', prop: 'createDate'},
+    { name: 'Mood' },
+    { name: 'Pain Areas' },
   ];
 
   rows = [{
@@ -43,8 +45,9 @@ export class AssessmentsPage {
     this.assessments = this.assessmentsChangeFeed.pipe(
       map(snapshots => snapshots.map((action: any) => {
         return {
-          ...action.payload.val(),
+          $ref: action.payload.ref,
           $key: action.payload.key,
+          ...action.payload.val(),
         };
       }))
     );
@@ -54,17 +57,16 @@ export class AssessmentsPage {
     console.log('ionViewDidLoad AssessmentsPage');
   }
 
-  addAssessment() {
+  add() {
     this.assessmentsRef.push({
       createDate: new Date().toString(),
-      emogi: '👍',
+      mood: '👍',
+      painAreas: [],
       kidId: this.kid.$key
-    } as Assessment);
+    });
   }
 
-  delete ($key) {
-    console.log($key)
-    this.assessmentsRef.remove($key);
+  update (row, key, value) {
+    row.$ref.update({[key]: value})
   }
-
 }

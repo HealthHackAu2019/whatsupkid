@@ -1,6 +1,9 @@
-interface Kid {
-	$key: string
+import { DatabaseSnapshot } from "@angular/fire/database";
+
+export interface Kid {
+	$key?: string
+	$ref?: DatabaseSnapshot<Kid>['ref']
 	name: string
-	emogi: string
+	spiritEmoji: string
 	createDate: string
 }

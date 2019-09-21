@@ -4,6 +4,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapsh
 import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs/operators';
 import { AssessmentsPage } from '../assessments/assessments';
+import { Kid } from '../../models/kid.interface';
 
 /**
  * Generated class for the KidsPage page.
@@ -18,14 +19,14 @@ import { AssessmentsPage } from '../assessments/assessments';
   templateUrl: 'kids.html',
 })
 export class KidsPage {
-
   kids: Observable<Kid[]>
   kidsRef: AngularFireList<Kid>
   kidsChangeFeed: Observable<AngularFireAction<DatabaseSnapshot<Kid>>[]>
 
   columns = [
-    { name: 'Name' },
-    { name: 'Emogi' },
+    { name: 'Date', prop: 'createDate', editable: false},
+    { name: 'Name', editable: true },
+    { name: 'Spirit Emoji', editable: true },
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
@@ -34,11 +35,12 @@ export class KidsPage {
     this.kidsChangeFeed = this.kidsRef.snapshotChanges()
     
     this.kids = this.kidsChangeFeed.pipe(
-      map(snapshots => snapshots.map((action: any) => {
+      map(snapshots => snapshots.map((action: any): Kid => {
         return {
-          ...action.payload.val(),
+          $ref: action.payload.ref,
           $key: action.payload.key,
-        };
+          ...action.payload.val(),
+        }
       }))
     );
   }
@@ -47,22 +49,19 @@ export class KidsPage {
     console.log('ionViewDidLoad KidsPage');
   }
 
-  addKid () {
+  add () {
     this.kidsRef.push({
       createDate: new Date().toString(),
       name: "Unnamed",
-      emogi: '👍'
-    } as Kid);
+      spiritEmoji: '🐱‍👤'
+    })
   }
 
-  async navigateToAssessments($key) {
-    const kids = await new Promise(resolve => this.kids.subscribe(kids => resolve(kids))) as Kid[]
-    const kid = kids.find(kid => kid.$key === $key)
+  update (kid, key, value) {
+    kid.$ref.update({[key]: value})
+  }
+
+  async navigateToAssessments(kid) {
     this.navCtrl.push(AssessmentsPage, {kid})
-  }
-
-  delete ($key) {
-    console.log($key)
-    this.kidsRef.remove($key);
   }
 }

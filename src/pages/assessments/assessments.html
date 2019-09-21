@@ -6,25 +6,49 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Assessments for {{kid.name}}</ion-title>
+    <ion-title>💠 Assessments for {{kid.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block (click)="addAssessment()">Add Assessment</button>
-
-  <!-- <ul>
-    <li *ngFor="let assessment of assessments | async">
-       {{ assessment | json }}
-    </li>
-  </ul> -->
-
   <div>
     <ngx-datatable
-      class="material"
-      [rows]="assessments | async"
-      [columns]="columns">
+    rowHeight="55"
+    columnMode="force"
+    class="material"
+    [rows]="assessments | async"
+    [columns]="columns">
+    
+    <!-- Display columns -->
+    <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop">
+      <ng-template *ngIf = "col.name === 'Date'" let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value | date: 'dd/MM/yyyy hh:mmaa'}}
+      </ng-template>
 
-    </ngx-datatable>
-  </div>
+      <ng-template *ngIf = "col.name === 'Pain Areas'" let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span *ngFor="let painArea of painAreas">{{painArea.location}}: {{painArea.intensity}}/5</span>
+          {{value | date: 'dd/MM/yyyy hh:mmaa'}}
+      </ng-template>
+
+      <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+        <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="update(row, col.prop, $event)"></ion-input>
+      </ng-template>
+
+      <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- Delete button column -->
+    <ngx-datatable-column  name="Actions" sortable="false" prop="$key">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button ion-button color="danger" small (click)="row.$ref.remove()">
+          <i class="fa fa-ban">Delete</i>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+  <button ion-button block (click)="add()">Add Assessment</button>
+</div>
 </ion-content>
