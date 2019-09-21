@@ -19,5 +19,11 @@ sudo npm i ionic@3 -g
 ionic serve --l
 ```
 
+# Architecture
+- The different screens are sorted into pages
+- You can changes the ux of the pages by editing the html and scss in `src/pages/{page}`
+- The data for each entity is managed through providers in `src/providers/{entity}`
+- To get access to a new bit of data simply inject the service into the page component, or initialise it in the constructor if it's a dynamic service
+
 # Contributers
 

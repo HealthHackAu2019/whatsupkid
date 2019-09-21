@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs-compat';
+import { AssessmentsPage } from '../assessments/assessments';
+import { KidProvider } from '../../providers/kid/kid';
 
 /**
  * Generated class for the KidsPage page.
@@ -17,14 +17,20 @@ import { Observable } from 'rxjs-compat';
 })
 export class KidsPage {
 
-  kids: Observable<Kid[]>
+  columns = [
+    { name: 'Date', prop: 'createDate', editable: false},
+    { name: 'Name', editable: true },
+    { name: 'Spirit Emoji', editable: true },
+  ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
-    this.kids = this.database.list('kids').valueChanges() as Observable<Kid[]>
+  constructor(public navCtrl: NavController, public navParams: NavParams, public kidProvider: KidProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KidsPage');
   }
 
+  async navigateToAssessments(kid) {
+    this.navCtrl.push(AssessmentsPage, {kid})
+  }
 }
