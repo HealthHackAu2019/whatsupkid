@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapshot } from '@angular/fire/database';
-import { Observable } from 'rxjs-compat';
-import { map } from 'rxjs/operators';
-import {Assessment} from '../../models/assesment.interface'
-import { Kid } from '../../models/kid.interface';
+import { AngularFireDatabase} from '@angular/fire/database';
 import { AssessmentProvider, assessmentProviderFactory } from '../../providers/assessment/assessment';
 
 /**
