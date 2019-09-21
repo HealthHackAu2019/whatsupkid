@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
+import { DataProvider } from '../../providers/data/data.provider';
+import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 
 /**
  * Generated class for the HomePage page.
@@ -18,17 +20,25 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
+    // TODO set kid logged in to active kid
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
+
   logout() {
         console.log('App Component Logged out...');
         this.authProvider.logout();
         this.toastProvider.showToast(`You have been logged out. Come back soon.`)
         this.navCtrl.setRoot('WelcomePage');
+  }
+
+  async startAssessment () {
+    const assessment = await this.dataProvider.addAssessment()
+    this.dataProvider.activateAssessment(assessment)
+    this.navCtrl.push(SpiritEmojiPage, {assessment})
   }
 
   isAnonymous(): boolean {
