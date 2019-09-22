@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data.provider';
-import { LocationData } from '../../models/assesment.interface';
+import { LocationData } from '../../models/assessment.interface';
 import { AlertProvider } from '../../providers/alert/alert';
 import { ToastProvider } from '../../providers/toast/toast';
 

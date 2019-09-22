@@ -25,5 +25,11 @@ ionic serve --l
 - The data is managed in a data service, which is responsible for loading and storing the data the application needs
 - It may be necessary at some point to split the data providers out by entity (AssessmentProvider, KidProvider, etc) but for the same of speed it's all together at the moment
 
+# Deployment
+```
+npm run build
+firebase deploy
+```
+
 # Contributers
 

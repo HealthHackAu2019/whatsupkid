@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 */
 @Injectable()
 export class AuthProvider {
-  user: any;
+  user: firebase.User;
+  
   constructor(private afAuth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
     afAuth.user.subscribe((user) => {

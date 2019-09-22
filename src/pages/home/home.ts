@@ -4,7 +4,7 @@ import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data.provider';
-import { MoodData } from '../../models/assesment.interface';
+import { MoodData } from '../../models/assessment.interface';
 // import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 // import { Kid } from '../../models/kid.interface';
 

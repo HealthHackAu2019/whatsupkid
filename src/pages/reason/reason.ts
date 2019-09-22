@@ -4,7 +4,7 @@ import { DataProvider } from '../../providers/data/data.provider';
 import { ToastProvider } from '../../providers/toast/toast';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
-import { ReasonData } from '../../models/assesment.interface';
+import { ReasonData } from '../../models/assessment.interface';
 
 /**
  * Generated class for the ReasonPage page.

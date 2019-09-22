@@ -4,8 +4,9 @@ import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapsh
 import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs/operators';
 import { Kid } from '../../models/kid.interface';
-import { Assessment, MoodData, Mood, LocationData, Location, Reason, ReasonData } from '../../models/assesment.interface';
+import { Assessment, MoodData, Mood, LocationData, Location, Reason, ReasonData } from '../../models/assessment.interface';
 import { Loading } from 'ionic-angular';
+import { AuthProvider } from '../auth/auth';
 
 
 /*
@@ -144,7 +145,7 @@ export class DataProvider {
     },
   ]
 
-  constructor(private database: AngularFireDatabase) {
+  constructor(private database: AngularFireDatabase, private authProvider: AuthProvider) {
     this.loadKids() // Can load kids straight away as there's no data dep
   }
 
@@ -193,7 +194,7 @@ export class DataProvider {
     this.activeKid = kid
   }
 
-  async addKid (userId: string, colour: string): Promise<Kid> {
+  async addKid (userId: string = this.authProvider.currentUser().uid, colour: string = this.colors[0]): Promise<Kid> {
     const kid = {
       createDate: new Date().toString(),
       name: "Unnamed",

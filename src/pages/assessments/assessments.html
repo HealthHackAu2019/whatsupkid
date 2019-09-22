@@ -25,16 +25,16 @@
           {{value | date: 'dd/MM/yyyy hh:mmaa'}}
       </ng-template>
 
-      <ng-template *ngIf = "col.name === 'Pain Areas'" let-row="row" let-value="value" ngx-datatable-cell-template>
-          <span *ngFor="let painArea of row.painAreas">{{painArea.location}}: {{painArea.intensity}}/5</span>, 
+      <ng-template *ngIf = "col.name === 'Mood'" let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{getMoodLabel(value)}}
       </ng-template>
-
-      <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
-        <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="dataProvider.update(row, col.prop, $event)"></ion-input>
+      
+      <ng-template *ngIf = "col.name === 'Location'" let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{getLocationLabel(value)}}
       </ng-template>
-
-      <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
+        
+      <ng-template *ngIf = "col.name === 'Reason'" let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{getReasonLabel(value)}}
       </ng-template>
     </ngx-datatable-column>
 
