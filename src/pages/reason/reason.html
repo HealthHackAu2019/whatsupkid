@@ -11,5 +11,17 @@
 </ion-header>
 
 <ion-content padding>
-
+    <ion-grid>
+        <ion-item>
+          </ion-item>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 *ngFor="let reason of reasons;" class="mood"
+            (click)="next(reason)"
+          >
+            <p>{{reason.label}}</p>
+            <img [src]="reason.img" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    <button ion-button block clear (click)="logout()">Logout</button>
 </ion-content>
