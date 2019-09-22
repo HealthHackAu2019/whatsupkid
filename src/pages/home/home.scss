@@ -1,5 +1,8 @@
 page-home {
     .mood {
         padding: 10px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
