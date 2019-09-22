@@ -21,8 +21,10 @@ export class LocationPage {
   locations: any;
   frontParts: any;
   backParts: any;
+  color: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataProvider: DataProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider) {
     this.locations = this.dataProvider.locationData;
+    this.color = this.dataProvider.activeKid.colour;
     this.frontParts = [
       this.dataProvider.locationData[0],
       this.dataProvider.locationData[1],

@@ -32,15 +32,16 @@ export class DataProvider {
   loading: Loading
 
   colors = [
-    '#f6e58d',
-    '#f0932b',
-    '#ff7979',
-    '#eb4d4b',
-    '#badc58',
-    '#4834d4',
-    '#c7ecee',
-    '#130f40',
-    '#e056fd',
+    'yellow',
+    'orange',
+    'pink',
+    'red',
+    'green',
+    'blue',
+    'aqua',
+    'darkBlue',
+    'magenta',
+    'brand'
   ]
 
   moodsData: MoodData[] = [

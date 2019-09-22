@@ -23,10 +23,12 @@ import { MoodData } from '../../models/assesment.interface';
 export class HomePage {
   name: any;
   moods: any;
+  color: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider, private loadingController: LoadingController) {
     // TODO set kid logged in to active kid
     this.moods = this.dataProvider.moodsData
-    this.name = this.dataProvider.activateKid.name;
+    this.name = this.dataProvider.activeKid.name;
+    this.color = this.dataProvider.activeKid.colour;
     
     if(this.dataProvider.loading) {
       this.dataProvider.loading.dismiss()

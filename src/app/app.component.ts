@@ -26,7 +26,6 @@ export class MyApp {
     this.afAuth.authState
       .subscribe(async (user) => {
         if (user) {
-          this.rootPage = 'TabsPage'
 
           const kid = await this.dataProvider.getKid(user.uid)
           this.dataProvider.activateKid(kid)
@@ -39,6 +38,8 @@ export class MyApp {
           console.info("user", user);
           console.info("kid", kid);
           console.info("assessment", assessment);
+          this.rootPage = 'TabsPage';
+
         } else {
           this.rootPage = 'WelcomePage'
         }

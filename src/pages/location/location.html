@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar [color]="color">
     <ion-title>Location</ion-title>
   </ion-navbar>
 </ion-header>
@@ -17,7 +17,7 @@
         <ion-grid>
           <ion-row>
             <ion-col col-12 *ngFor="let front of frontParts;" class="location" (click)="next(front)">
-              <img [src]="front.img" class="part"/>
+              <img [src]="front.img" class="part" />
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -26,7 +26,7 @@
         <ion-grid>
           <ion-row>
             <ion-col col-12 *ngFor="let back of backParts;" class="location" (click)="next(back)">
-              <img [src]="back.img" class="part"/>
+              <img [src]="back.img" class="part" />
             </ion-col>
           </ion-row>
         </ion-grid>

@@ -20,6 +20,7 @@ import { ReasonData } from '../../models/assesment.interface';
 })
 export class ReasonPage {
   reasons: any;
+  color: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,6 +30,7 @@ export class ReasonPage {
     private alertProvider: AlertProvider,
   ) {
     this.reasons = this.dataProvider.reasonData;
+    this.color = this.dataProvider.activeKid.colour;
   }
 
   ionViewDidLoad() {
