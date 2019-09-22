@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastProvider } from '../providers/toast/toast';
+import { DataProvider } from '../providers/data/data.provider';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,7 +12,7 @@ import { ToastProvider } from '../providers/toast/toast';
 export class MyApp {
   rootPage:any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public afAuth: AngularFireAuth) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public afAuth: AngularFireAuth, private dataProvider: DataProvider) {
     this.handleAuthState();
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -23,13 +24,17 @@ export class MyApp {
 
   handleAuthState() {
     this.afAuth.authState
-      .subscribe((user) => {
+      .subscribe(async (user) => {
         if (user) {
           this.rootPage = 'TabsPage'
+
+          const kid = await this.dataProvider.getKid(user.uid)
+          this.dataProvider.activateKid(kid)
+          
           console.info("user", user);
+          console.info("kid", kid);
         } else {
           this.rootPage = 'WelcomePage'
-          console.info("user", user);
         }
       });
   }

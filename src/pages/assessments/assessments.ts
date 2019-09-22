@@ -23,7 +23,5 @@ export class AssessmentsPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataProvider: DataProvider) {
-    this.dataProvider.activateKid(navParams.get('kid'))
-    this.dataProvider.loadAssessments()
   }
 }

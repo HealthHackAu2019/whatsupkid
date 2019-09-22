@@ -27,7 +27,7 @@ export class DataProvider {
   assessmentsChangeFeed: Observable<AngularFireAction<DatabaseSnapshot<Assessment>>[]>
 
   activeAssessment: Assessment
-  
+
   constructor(private database: AngularFireDatabase) {
     this.loadKids() // Can load kids straight away as there's no data dep
   }
@@ -38,6 +38,25 @@ export class DataProvider {
   }
 
   /*🐱‍👤 Kid stuff */
+
+  async getKid (userId: string): Promise<Kid> {
+    const kidObservable = this.database
+    .list('kids', ref => ref.orderByChild('userId').equalTo(userId).limitToFirst(1))
+    .snapshotChanges()
+    .pipe(
+      map(snapshots => snapshots.map((action: any): Kid => {
+        return {
+          $ref: action.payload.ref,
+          $key: action.payload.key,
+          ...action.payload.val(),
+        }
+      }))
+    )
+    
+    const [kid] = await this.resolveObservable(kidObservable)
+
+    return kid
+  }
 
   loadKids () {
     this.kidsRef = this.database.list('kids')

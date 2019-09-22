@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AssessmentsPage } from '../assessments/assessments';
 import { DataProvider } from '../../providers/data/data.provider';
 import { Kid } from '../../models/kid.interface';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /**
  * Generated class for the KidsPage page.
@@ -28,6 +29,14 @@ export class KidsPage {
   }
 
   async navigateToAssessments(kid: Kid) {
+    this.dataProvider.activateKid(kid)
+    this.dataProvider.loadAssessments()
     this.navCtrl.push(AssessmentsPage, {kid})
+  }
+
+  async navigateToDashboard(kid: Kid) {
+    this.dataProvider.activateKid(kid)
+    this.dataProvider.loadAssessments()
+    this.navCtrl.push(DashboardPage, {kid})
   }
 }

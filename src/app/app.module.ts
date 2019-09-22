@@ -17,11 +17,13 @@ import { AssessmentsPage } from '../pages/assessments/assessments';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DataProvider } from '../providers/data/data.provider';
 import { SpiritEmojiPage } from '../pages/spirit-emoji/spirit-emoji';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @NgModule({
   declarations: [
     MyApp,
     AssessmentsPage,
+    DashboardPage,
     SpiritEmojiPage,
   ],
   imports: [
@@ -34,6 +36,7 @@ import { SpiritEmojiPage } from '../pages/spirit-emoji/spirit-emoji';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    DashboardPage,
     AssessmentsPage,
     SpiritEmojiPage,
   ],

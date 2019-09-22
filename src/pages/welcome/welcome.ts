@@ -46,24 +46,23 @@ export class WelcomePage {
       })
   }
 
-    // Should only fire if there is no currently logged in user
-    async chooseColourAndRegisterKidAndStartAssessment (colour: any) {
-      // Register kid as a user
-      const result = await this.authProvider.loginAnonymously()
-  
-      // Create kid object to store the kid's deets
-      const kid = await this.dataProvider.addKid(result.user.uid, colour)
-  
-      // Set kid record as the one currently logged in
-      this.dataProvider.activateKid(kid)
+  // Should only fire if there is no currently logged in user
+  async chooseColourAndRegisterKidAndStartAssessment (colour: any) {
+    // Register kid as a user
+    const result = await this.authProvider.loginAnonymously()
 
-      // Create assessment
-      this.dataProvider.loadAssessments()
-      const assessment = await this.dataProvider.addAssessment()
-      this.dataProvider.activateAssessment(assessment)
-  
-      // Push off to first assessment page
-      this.navCtrl.push(SpiritEmojiPage, {assessment})
-    }
+    // Create kid object to store the kid's deets
+    const kid = await this.dataProvider.addKid(result.user.uid, colour)
 
+    // Set kid record as the one currently logged in
+    this.dataProvider.activateKid(kid)
+
+    // Create assessment
+    this.dataProvider.loadAssessments()
+    const assessment = await this.dataProvider.addAssessment()
+    this.dataProvider.activateAssessment(assessment)
+
+    // Push off to first assessment page
+    this.navCtrl.push(SpiritEmojiPage, {assessment})
+  }
 }
