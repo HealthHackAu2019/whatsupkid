@@ -4,7 +4,7 @@ import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data.provider';
-import { MoodData } from '../../models/assessment.interface';
+import { MoodData, Mood } from '../../models/assessment.interface';
 // import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 // import { Kid } from '../../models/kid.interface';
 
@@ -53,9 +53,13 @@ export class HomePage {
   next(moodData: MoodData) {
     console.info('moodData', moodData)
     try {
-      this.dataProvider.update(this.dataProvider.activeAssessment, 'mood',  moodData.mood);
-      this.dataProvider.activeKid.$ref.update({name: this.dataProvider.activeKid.name});
-      this.navCtrl.push('ReasonPage');
+      if (moodData.mood === Mood.HAPPY) {
+        this.toastProvider.showToast('Thanks for your feedback!');
+      } else {
+        this.dataProvider.update(this.dataProvider.activeAssessment, 'mood',  moodData.mood);
+        this.dataProvider.activeKid.$ref.update({name: this.dataProvider.activeKid.name});
+        this.navCtrl.push('ReasonPage');
+      }
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);
       console.error(error);
