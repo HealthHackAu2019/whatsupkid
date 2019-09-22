@@ -98,34 +98,34 @@ export class DataProvider {
 
   reasonData: ReasonData[] = [
     {
-      reason: Reason.TOILET,
-      img: 'assets/img/mood/happy.png',
-      label: 'TOILET'
-    },
-    {
       reason: Reason.COLD,
-      img: 'crying',
+      img: 'assets/imgs/reasons/feels-cold.png',
       label: 'COLD'
     },
     {
       reason: Reason.HOT,
-      img: 'crying',
+      img: 'assets/imgs/reasons/feels-heat.png',
       label: 'HOT'
     },
     {
       reason: Reason.HOME_SICK,
-      img: 'crying',
+      img: 'assets/imgs/reasons/needs-family.png',
       label: 'HOME_SICK'
     },
     {
       reason: Reason.HUNGRY,
-      img: 'crying',
+      img: 'assets/imgs/reasons/needs-food.png',
       label: 'HUNGRY'
     },
     {
-      reason: Reason.THIRSTY,
-      img: 'crying',
-      label: 'THIRSTY'
+      reason: Reason.WASH,
+      img: 'assets/imgs/reasons/needs-wash.png',
+      label: 'Wash Me'
+    },
+    {
+      reason: Reason.TOILET,
+      img: 'assets/imgs/reasons/needs-bathroom.png',
+      label: 'TOILET'
     },
   ]
 

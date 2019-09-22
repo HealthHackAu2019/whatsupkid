@@ -19,7 +19,7 @@ import { ReasonData } from '../../models/assesment.interface';
   templateUrl: 'reason.html'
 })
 export class ReasonPage {
-  reason: any;
+  reasons: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,7 +28,7 @@ export class ReasonPage {
     private authProvider: AuthProvider,
     private alertProvider: AlertProvider,
   ) {
-    this.reason = this.dataProvider.reasonData;
+    this.reasons = this.dataProvider.reasonData;
   }
 
   ionViewDidLoad() {
@@ -46,7 +46,7 @@ export class ReasonPage {
     console.info('moodData', reasonData)
     try {
       this.dataProvider.activeAssessment.$ref.update({mood: reasonData.reason});
-      this.navCtrl.push('ReasonPage');
+      this.navCtrl.push('LocationPage');
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);
       console.error(error);
