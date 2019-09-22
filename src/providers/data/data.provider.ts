@@ -31,40 +31,40 @@ export class DataProvider {
   moodsData: MoodData[] = [
     {
       mood: Mood.HAPPY,
-      img: 'img/mood/happy.png',
-      label: 'HAPPY'
+      img: 'assets/img/moods/Happy-100px-wide.png',
+      label: 'Happy'
     },
     {
       mood: Mood.LOW,
-      img: 'crying',
-      label: 'LOW'
+      img: 'assets/img/moods/Bored-100px-wide.png',
+      label: 'Bored'
     },
     {
       mood: Mood.WINCE,
-      img: 'crying',
-      label: 'WINCE'
+      img: 'assets/img/moods/Unhappy-100px-wide.png',
+      label: 'Unhappy'
     },
     {
       mood: Mood.GRIT,
-      img: 'crying',
-      label: 'GRIT'
+      img: 'assets/img/moods/Annoyed-100px-wide.png',
+      label: 'Annoyed'
     },
     {
       mood: Mood.CRY,
-      img: 'crying',
-      label: 'GRIT'
+      img: 'assets/img/moods/Angry-100px-wide.png',
+      label: 'Angry'
     },
     {
       mood: Mood.SCREAM,
-      img: 'crying',
-      label: 'SCREAM'
+      img: 'assets/img/moods/Sad-100px-wide.png',
+      label: 'Sad'
     },
   ];
 
   locationData: LocationData[] = [
     {
       location: Location.FRONT_HEAD,
-      img: 'img/mood/happy.png',
+      img: 'assets/img/mood/happy.png',
       label: 'FRONT_HEAD'
     },
     {
@@ -97,7 +97,7 @@ export class DataProvider {
   reasonData: ReasonData[] = [
     {
       reason: Reason.TOILET,
-      img: 'img/mood/happy.png',
+      img: 'assets/img/mood/happy.png',
       label: 'TOILET'
     },
     {

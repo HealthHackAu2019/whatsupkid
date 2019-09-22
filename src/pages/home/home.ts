@@ -21,15 +21,17 @@ import { DataProvider } from '../../providers/data/data.provider';
 })
 export class HomePage {
   name: string;
+  moods: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
     // TODO set kid logged in to active kid
+    this.moods = this.dataProvider.moodsData
+
   }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    console.table(this.moods);
   }
-
-
 
   logout() {
         console.log('App Component Logged out...');
