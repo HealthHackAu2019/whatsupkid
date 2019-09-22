@@ -5,6 +5,7 @@ import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs/operators';
 import { Kid } from '../../models/kid.interface';
 import { Assessment, MoodData, Mood, LocationData, Location, Reason, ReasonData } from '../../models/assesment.interface';
+import { Loading } from 'ionic-angular';
 
 
 /*
@@ -27,6 +28,20 @@ export class DataProvider {
   assessmentsChangeFeed: Observable<AngularFireAction<DatabaseSnapshot<Assessment>>[]>
 
   activeAssessment: Assessment
+
+  loading: Loading
+
+  colors = [
+    '#f6e58d',
+    '#f0932b',
+    '#ff7979',
+    '#eb4d4b',
+    '#badc58',
+    '#4834d4',
+    '#c7ecee',
+    '#130f40',
+    '#e056fd',
+  ]
 
   moodsData: MoodData[] = [
     {

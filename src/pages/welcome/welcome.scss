@@ -1,3 +1,12 @@
 page-welcome {
+	.scroll-content {
+		display:flex;
+		flex-direction: column;
+	}
 
+	.welcome-color {
+		flex: 1;
+		border-radius: 116px;
+    	margin: 10px;
+	}
 }

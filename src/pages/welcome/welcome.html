@@ -11,8 +11,36 @@
 </ion-header>
 
 <ion-content padding>
-    <button ion-button block clear (click)="goToLogin()">Clinician Login</button>
-    <button ion-button block clear (click)="goToSignUp()">Clinician Signup</button>
-    <button ion-button block clear (click)="loginAnon()">I'm a kid - LET ME IN</button>
-    <button ion-button block clear (click)="chooseColourAndRegisterKidAndStartAssessment('red')">Choose colour and register</button>
+  <ion-item>
+    <ion-label>
+        Kids: Pick a colour!
+    </ion-label>
+  </ion-item>
+  <ion-grid style = 'flex:1'>
+    <ion-row style = 'flex:1'>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[0]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[0])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[1]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[1])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[2]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[2])" class = "welcome-color"></ion-col>
+      </ion-row>
+      <ion-row style = 'flex:1'>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[3]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[3])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[4]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[4])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[5]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[5])" class = "welcome-color"></ion-col>
+    </ion-row>
+    <ion-row style = 'flex:1'>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[6]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[5])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[7]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[6])" class = "welcome-color"></ion-col>
+        <ion-col [ngStyle]='{flex:1, "background-color": dataProvider.colors[8]}' (click)="chooseColourAndRegisterKidAndStartAssessment(dataProvider.colors[7])" class = "welcome-color"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row style = 'display:flex; flex-direction: column'>
+    <ion-item>
+      <ion-label>
+          Clinicians
+      </ion-label>
+    </ion-item>
+    <button ion-button block clear (click)="goToLogin()">Login</button>
+    <button ion-button block clear (click)="goToSignUp()">Signup</button>
+  </ion-row>
 </ion-content>

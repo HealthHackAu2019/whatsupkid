@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { DataProvider } from '../../providers/data/data.provider';
@@ -19,7 +19,7 @@ import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private dataProvider: DataProvider, private loadingController: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -48,6 +48,13 @@ export class WelcomePage {
 
   // Should only fire if there is no currently logged in user
   async chooseColourAndRegisterKidAndStartAssessment (colour: any) {
+
+    this.dataProvider.loading = this.loadingController.create({
+      content: "Just a tic... 😊⏳",
+    })
+    
+    await this.dataProvider.loading.present();
+
     // Register kid as a user
     const result = await this.authProvider.loginAnonymously()
 
@@ -62,7 +69,6 @@ export class WelcomePage {
     const assessment = await this.dataProvider.addAssessment()
     this.dataProvider.activateAssessment(assessment)
 
-    // Push off to first assessment page
-    this.navCtrl.push(WelcomePage, {assessment})
+    // The auth handler will decide our fate now
   }
 }

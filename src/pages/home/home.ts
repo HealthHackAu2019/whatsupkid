@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -23,11 +23,14 @@ import { MoodData } from '../../models/assesment.interface';
 export class HomePage {
   name: any;
   moods: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider, private loadingController: LoadingController) {
     // TODO set kid logged in to active kid
     this.moods = this.dataProvider.moodsData
     this.name = this.dataProvider.activateKid.name;
-
+    
+    if(this.dataProvider.loading) {
+      this.dataProvider.loading.dismiss()
+    }
   }
   
   ionViewDidLoad() {
