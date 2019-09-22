@@ -23,10 +23,11 @@ import { MoodData } from '../../models/assessment.interface';
 export class HomePage {
   name: any;
   moods: any;
+  color: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider, private loadingController: LoadingController) {
     // TODO set kid logged in to active kid
     this.moods = this.dataProvider.moodsData
-    this.name = this.dataProvider.activateKid.name;
+    this.color = this.dataProvider.activeKid.colour;
     
     if(this.dataProvider.loading) {
       this.dataProvider.loading.dismiss()
@@ -45,12 +46,6 @@ export class HomePage {
         this.navCtrl.setRoot('WelcomePage');
   }
 
-  // async startAssessment () {
-  //   const assessment = await this.dataProvider.addAssessment()
-  //   this.dataProvider.activateAssessment(assessment)
-  //   this.navCtrl.push(SpiritEmojiPage, {assessment})
-  // }
-
   isAnonymous(): boolean {
     return this.authProvider.isCurrentUserAnonymous();
   }
@@ -58,8 +53,8 @@ export class HomePage {
   next(moodData: MoodData) {
     console.info('moodData', moodData)
     try {
-      this.dataProvider.activeAssessment.$ref.update({mood: moodData.mood});
-      this.dataProvider.activeKid.$ref.update({name: this.name});
+      this.dataProvider.update(this.dataProvider.activeAssessment, 'mood',  moodData.mood);
+      this.dataProvider.activeKid.$ref.update({name: this.dataProvider.activeKid.name});
       this.navCtrl.push('ReasonPage');
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);

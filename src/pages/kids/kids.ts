@@ -18,6 +18,7 @@ import { DashboardPage } from '../dashboard/dashboard';
   templateUrl: 'kids.html',
 })
 export class KidsPage {
+  color: any;
   columns = [
     { name: 'Date', prop: 'createDate', editable: false},
     { name: 'Name', editable: true },
@@ -26,6 +27,7 @@ export class KidsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
     dataProvider.loadKids()
+    this.color = this.dataProvider.activeKid.colour;
   }
 
   async navigateToAssessments(kid: Kid) {

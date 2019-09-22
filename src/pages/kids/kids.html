@@ -5,37 +5,34 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar [color]="color">
     <ion-title>🐱‍👤 Kids</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div>
-    <ngx-datatable
-      rowHeight="55"
-      columnMode="force"
-      class="material"
-      [rows]="dataProvider.kids | async"
+    <ngx-datatable rowHeight="55" columnMode="force" class="material" [rows]="dataProvider.kids | async"
       [columns]="columns">
 
       <!-- Display columns -->
       <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop">
-        <ng-template *ngIf = "col.name === 'Date'" let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{value | date: 'dd/MM/yyyy hh:mmaa'}}
+        <ng-template *ngIf="col.name === 'Date'" let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value | date: 'dd/MM/yyyy hh:mmaa'}}
         </ng-template>
 
-        <ng-template *ngIf = "col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
-          <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary" (ngModelChange)="dataProvider.update(row, col.prop, $event)"></ion-input>
+        <ng-template *ngIf="col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+          <ion-input class='data-table-input' [ngModel]='row[col.prop]' autocapitalize="on" color="primary"
+            (ngModelChange)="dataProvider.update(row, col.prop, $event)"></ion-input>
         </ng-template>
 
-        <ng-template *ngIf = "!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
+        <ng-template *ngIf="!col.editable" let-row="row" let-value="value" ngx-datatable-cell-template>
           {{value}}
         </ng-template>
       </ngx-datatable-column>
 
       <!-- Button columns -->
-      <ngx-datatable-column  name="Actions" sortable="false" prop="$key">
+      <ngx-datatable-column name="Actions" sortable="false" prop="$key">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <button ion-button small (click)="navigateToAssessments(row)">
             <i class="fa fa-ban">Assessments</i>

@@ -27,9 +27,10 @@ export class MyApp {
     this.afAuth.authState
       .subscribe(async (user) => {
         if (user) {
-          this.rootPage = 'TabsPage'
+          console.info("user", user);
 
-          if (this.authProvider.isCurrentUserAnonymous() ) {
+          // If user is anon it means they're a kid
+          if (this.authProvider.isCurrentUserAnonymous()) {
             const kid = await this.dataProvider.getKid(user.uid)
             this.dataProvider.activateKid(kid)
 
@@ -42,13 +43,14 @@ export class MyApp {
             const assessment = await this.dataProvider.addAssessment()
             this.dataProvider.activateAssessment(assessment)
             
-            console.info("user", user);
             console.info("kid", kid);
             console.info("assessment", assessment);
           }
+
+          this.rootPage = 'TabsPage';
         } else {
           this.rootPage = 'WelcomePage'
         }
-      });
+    })
   }
 }

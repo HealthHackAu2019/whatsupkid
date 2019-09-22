@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar [color]="color">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,7 +14,7 @@
   <ion-grid *ngIf="isAnonymous()">
     <ion-item>
       <ion-label floating>What is your name?</ion-label>
-      <ion-input [(ngModel)]="name" placholder="What is your name?"></ion-input>
+      <ion-input [(ngModel)]="dataProvider.activeKid.name" placholder="What is your name?"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col col-12 col-sm-12 col-md-4 col-lg-4 *ngFor="let mood of moods;" class="mood" (click)="next(mood)">
