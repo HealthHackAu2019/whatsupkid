@@ -21,11 +21,12 @@ import { MoodData } from '../../models/assesment.interface';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  name: string;
+  name: any;
   moods: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
     // TODO set kid logged in to active kid
     this.moods = this.dataProvider.moodsData
+    this.name = this.dataProvider.activateKid.name;
 
   }
   
@@ -55,6 +56,7 @@ export class HomePage {
     console.info('moodData', moodData)
     try {
       this.dataProvider.activeAssessment.$ref.update({mood: moodData.mood});
+      this.dataProvider.activeKid.$ref.update({name: this.name});
       this.navCtrl.push('LocationPage');
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);
