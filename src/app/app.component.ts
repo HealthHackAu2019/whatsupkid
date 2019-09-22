@@ -38,6 +38,7 @@ export class MyApp {
 
           console.info("user", user);
           console.info("kid", kid);
+          console.info("assessment", assessment);
         } else {
           this.rootPage = 'WelcomePage'
         }
