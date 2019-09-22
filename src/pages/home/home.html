@@ -13,13 +13,26 @@
 <ion-content padding>
   <!-- This is test for isAnonymous() -->
     <ion-grid *ngIf="isAnonymous()">
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input [(ngModel)]="name" placholder="What is your name?"></ion-input>
+          </ion-item>
         <ion-row>
-          <ion-col col-6 col-sm-6 col-md-12 col-lg-4 col-xl-3>Hello</ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4>
+            {{dataProvider.moodsData}}
+          </ion-col>
         </ion-row>
-        <ion-row>
+        <!-- <ion-row>
           <ion-col col-6 col-sm-6 col-md-12 col-lg-4 col-xl-3 >
               <button ion-button small (click)="chooseColourAndRegisterKidAndStartAssessment()">
                 Start Assessment
+              </button>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+          <ion-col col-6 col-sm-6 col-md-12 col-lg-4 col-xl-3 >
+              <button ion-button small (click)="next()">
+                Next
               </button>
           </ion-col>
         </ion-row>

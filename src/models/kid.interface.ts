@@ -4,7 +4,8 @@ export interface Kid {
 	$key?: string
 	$ref?: DatabaseSnapshot<Kid>['ref']
 	name: string
-	spiritEmoji: string
+	color?: string
+	spiritEmoji?: string
 	createDate: string
 	userId: string
 	colour: string
