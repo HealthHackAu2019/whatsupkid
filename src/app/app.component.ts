@@ -35,16 +35,17 @@ export class MyApp {
             this.dataProvider.activateKid(kid)
 
             if (!kid) {
-              throw new Error('There is no kid record associated with this user')
+              this.authProvider.logout()
             }
-            
-            this.dataProvider.loadAssessments()
-            
-            const assessment = await this.dataProvider.addAssessment()
-            this.dataProvider.activateAssessment(assessment)
-            
-            console.info("kid", kid);
-            console.info("assessment", assessment);
+            else {
+              this.dataProvider.loadAssessments()
+              
+              const assessment = await this.dataProvider.addAssessment()
+              this.dataProvider.activateAssessment(assessment)
+              
+              console.info("kid", kid);
+              console.info("assessment", assessment);
+            }
           }
 
           this.rootPage = 'TabsPage';
