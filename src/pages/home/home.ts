@@ -32,7 +32,7 @@ export class HomePage {
       this.dataProvider.loading.dismiss()
     }
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     console.table(this.moods);
@@ -60,7 +60,7 @@ export class HomePage {
     try {
       this.dataProvider.activeAssessment.$ref.update({mood: moodData.mood});
       this.dataProvider.activeKid.$ref.update({name: this.name});
-      this.navCtrl.push('LocationPage');
+      this.navCtrl.push('ReasonPage');
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);
       console.error(error);

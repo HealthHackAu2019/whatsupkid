@@ -1,0 +1,26 @@
+<!--
+  Generated template for the ReasonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Why?</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-item>
+          </ion-item>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 *ngFor="let reason of reasons;" class="reason"
+            (click)="next(reason)"
+          >
+            <img [src]="reason.img" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    <button ion-button block clear (click)="logout()">Logout</button>
+</ion-content>

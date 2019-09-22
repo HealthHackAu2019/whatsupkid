@@ -46,7 +46,7 @@ export enum Reason {
 	'HOT' = 2,
 	'HOME_SICK' = 3,
 	'HUNGRY' = 4,
-	'THIRSTY' = 5,
+	'WASH' = 5,
 }
 
 export interface ReasonData {
