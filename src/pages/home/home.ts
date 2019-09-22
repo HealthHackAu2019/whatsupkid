@@ -4,6 +4,7 @@ import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data.provider';
+import { MoodData } from '../../models/assesment.interface';
 // import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 // import { Kid } from '../../models/kid.interface';
 
@@ -48,5 +49,16 @@ export class HomePage {
 
   isAnonymous(): boolean {
     return this.authProvider.isCurrentUserAnonymous();
+  }
+
+  next(moodData: MoodData) {
+    console.info('moodData', moodData)
+    try {
+      this.dataProvider.activeAssessment.$ref.update({mood: moodData.mood});
+      this.navCtrl.push('LocationPage');
+    } catch (error) {
+      this.alertProvider.showBasicAlert('Error', error.message);
+      console.error(error);
+    }
   }
 }

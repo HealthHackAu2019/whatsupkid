@@ -31,32 +31,32 @@ export class DataProvider {
   moodsData: MoodData[] = [
     {
       mood: Mood.HAPPY,
-      img: 'assets/img/moods/Happy-100px-wide.png',
+      img: 'assets/imgs/moods/Happy-100px-wide.png',
       label: 'Happy'
     },
     {
       mood: Mood.LOW,
-      img: 'assets/img/moods/Bored-100px-wide.png',
+      img: 'assets/imgs/moods/Bored-100px-wide.png',
       label: 'Bored'
     },
     {
       mood: Mood.WINCE,
-      img: 'assets/img/moods/Unhappy-100px-wide.png',
+      img: 'assets/imgs/moods/Unhappy-100px-wide.png',
       label: 'Unhappy'
     },
     {
       mood: Mood.GRIT,
-      img: 'assets/img/moods/Annoyed-100px-wide.png',
+      img: 'assets/imgs/moods/Annoyed-100px-wide.png',
       label: 'Annoyed'
     },
     {
       mood: Mood.CRY,
-      img: 'assets/img/moods/Angry-100px-wide.png',
+      img: 'assets/imgs/moods/Angry-100px-wide.png',
       label: 'Angry'
     },
     {
       mood: Mood.SCREAM,
-      img: 'assets/img/moods/Sad-100px-wide.png',
+      img: 'assets/imgs/moods/Sad-100px-wide.png',
       label: 'Sad'
     },
   ];
