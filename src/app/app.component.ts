@@ -35,20 +35,21 @@ export class MyApp {
             this.dataProvider.activateKid(kid)
 
             if (!kid) {
-              this.authProvider.logout()
+              this.authProvider.logout();
+              this.rootPage = 'WelcomePage'
             }
             else {
               this.dataProvider.loadAssessments()
               
               const assessment = await this.dataProvider.addAssessment()
               this.dataProvider.activateAssessment(assessment)
+              this.rootPage = 'TabsPage';
               
               console.info("kid", kid);
               console.info("assessment", assessment);
             }
           }
 
-          this.rootPage = 'TabsPage';
         } else {
           this.rootPage = 'WelcomePage'
         }
