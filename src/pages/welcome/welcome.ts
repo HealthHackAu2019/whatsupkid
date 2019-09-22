@@ -63,6 +63,6 @@ export class WelcomePage {
     this.dataProvider.activateAssessment(assessment)
 
     // Push off to first assessment page
-    this.navCtrl.push(SpiritEmojiPage, {assessment})
+    this.navCtrl.push(WelcomePage, {assessment})
   }
 }

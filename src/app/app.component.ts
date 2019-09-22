@@ -31,6 +31,8 @@ export class MyApp {
           const kid = await this.dataProvider.getKid(user.uid)
           this.dataProvider.activateKid(kid)
 
+          this.dataProvider.loadAssessments()
+
           const assessment = await this.dataProvider.addAssessment()
           this.dataProvider.activateAssessment(assessment)
 
