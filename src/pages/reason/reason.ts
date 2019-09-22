@@ -47,7 +47,7 @@ export class ReasonPage {
   next(reasonData: ReasonData) {
     console.info('moodData', reasonData)
     try {
-      this.dataProvider.activeAssessment.$ref.update({mood: reasonData.reason});
+      this.dataProvider.activeAssessment.$ref.update({reason: reasonData.reason});
       this.navCtrl.push('LocationPage');
     } catch (error) {
       this.alertProvider.showBasicAlert('Error', error.message);
