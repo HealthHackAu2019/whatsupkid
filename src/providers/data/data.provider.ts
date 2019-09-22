@@ -151,7 +151,6 @@ export class DataProvider {
         }
       }))
     )
-    
     const [kid] = await this.resolveObservable(kidObservable)
 
     return kid

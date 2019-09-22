@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data.provider';
+import { ToastProvider } from '../../providers/toast/toast';
+import { AuthProvider } from '../../providers/auth/auth';
+import { AlertProvider } from '../../providers/alert/alert';
+import { ReasonData } from '../../models/assesment.interface';
 
 /**
  * Generated class for the ReasonPage page.
@@ -11,15 +16,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-reason',
-  templateUrl: 'reason.html',
+  templateUrl: 'reason.html'
 })
 export class ReasonPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  reason: any;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public dataProvider: DataProvider,
+    private toastProvider: ToastProvider,
+    private authProvider: AuthProvider,
+    private alertProvider: AlertProvider,
+  ) {
+    this.reason = this.dataProvider.reasonData;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReasonPage');
   }
+
+  logout() {
+    console.log('App Component Logged out...');
+    this.authProvider.logout();
+    this.toastProvider.showToast(`Bye.`);
+    this.navCtrl.setRoot('WelcomePage');
+  }
+
+  next(reasonData: ReasonData) {
+    console.info('moodData', reasonData)
+    try {
+      this.dataProvider.activeAssessment.$ref.update({mood: reasonData.reason});
+      this.navCtrl.push('ReasonPage');
+    } catch (error) {
+      this.alertProvider.showBasicAlert('Error', error.message);
+      console.error(error);
+    }
+  }
+
 
 }

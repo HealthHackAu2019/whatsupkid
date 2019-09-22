@@ -29,7 +29,7 @@ export class HomePage {
     this.name = this.dataProvider.activateKid.name;
 
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     console.table(this.moods);
