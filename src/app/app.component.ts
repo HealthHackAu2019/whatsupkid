@@ -30,7 +30,10 @@ export class MyApp {
 
           const kid = await this.dataProvider.getKid(user.uid)
           this.dataProvider.activateKid(kid)
-          
+
+          const assessment = await this.dataProvider.addAssessment()
+          this.dataProvider.activateAssessment(assessment)
+
           console.info("user", user);
           console.info("kid", kid);
         } else {
