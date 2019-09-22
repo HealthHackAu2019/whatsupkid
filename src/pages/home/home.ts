@@ -4,7 +4,8 @@ import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data.provider';
-import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
+// import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
+// import { Kid } from '../../models/kid.interface';
 
 /**
  * Generated class for the HomePage page.
@@ -19,23 +20,31 @@ import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+  name: string;
+  moods: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
     // TODO set kid logged in to active kid
-  }
+    this.moods = this.dataProvider.moodsData
 
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    console.table(this.moods);
   }
-
-
 
   logout() {
         console.log('App Component Logged out...');
         this.authProvider.logout();
-        this.toastProvider.showToast(`You have been logged out. Come back soon.`)
+        this.toastProvider.showToast(`Bye.`)
         this.navCtrl.setRoot('WelcomePage');
   }
+
+  // async startAssessment () {
+  //   const assessment = await this.dataProvider.addAssessment()
+  //   this.dataProvider.activateAssessment(assessment)
+  //   this.navCtrl.push(SpiritEmojiPage, {assessment})
+  // }
 
   isAnonymous(): boolean {
     return this.authProvider.isCurrentUserAnonymous();

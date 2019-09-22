@@ -4,7 +4,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireAction, DatabaseSnapsh
 import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs/operators';
 import { Kid } from '../../models/kid.interface';
-import { Assessment } from '../../models/assesment.interface';
+import { Assessment, MoodData, Mood, LocationData, Location, Reason, ReasonData } from '../../models/assesment.interface';
 
 
 /*
@@ -28,13 +28,112 @@ export class DataProvider {
 
   activeAssessment: Assessment
 
+  moodsData: MoodData[] = [
+    {
+      mood: Mood.HAPPY,
+      img: 'assets/img/moods/Happy-100px-wide.png',
+      label: 'Happy'
+    },
+    {
+      mood: Mood.LOW,
+      img: 'assets/img/moods/Bored-100px-wide.png',
+      label: 'Bored'
+    },
+    {
+      mood: Mood.WINCE,
+      img: 'assets/img/moods/Unhappy-100px-wide.png',
+      label: 'Unhappy'
+    },
+    {
+      mood: Mood.GRIT,
+      img: 'assets/img/moods/Annoyed-100px-wide.png',
+      label: 'Annoyed'
+    },
+    {
+      mood: Mood.CRY,
+      img: 'assets/img/moods/Angry-100px-wide.png',
+      label: 'Angry'
+    },
+    {
+      mood: Mood.SCREAM,
+      img: 'assets/img/moods/Sad-100px-wide.png',
+      label: 'Sad'
+    },
+  ];
+
+  locationData: LocationData[] = [
+    {
+      location: Location.FRONT_HEAD,
+      img: 'assets/img/mood/happy.png',
+      label: 'FRONT_HEAD'
+    },
+    {
+      location: Location.FRONT_BODY_ARMS,
+      img: 'crying',
+      label: 'FRONT_BODY_ARMS'
+    },
+    {
+      location: Location.FRONT_LEGS,
+      img: 'crying',
+      label: 'FRONT_LEGS'
+    },
+    {
+      location: Location.BACK_HEAD,
+      img: 'crying',
+      label: 'BACK_HEAD'
+    },
+    {
+      location: Location.BACK_BODY_ARMS,
+      img: 'crying',
+      label: 'BACK_BODY_ARMS'
+    },
+    {
+      location: Location.BACK_LEGS,
+      img: 'crying',
+      label: 'BACK_LEGS'
+    },
+  ]
+
+  reasonData: ReasonData[] = [
+    {
+      reason: Reason.TOILET,
+      img: 'assets/img/mood/happy.png',
+      label: 'TOILET'
+    },
+    {
+      reason: Reason.COLD,
+      img: 'crying',
+      label: 'COLD'
+    },
+    {
+      reason: Reason.HOT,
+      img: 'crying',
+      label: 'HOT'
+    },
+    {
+      reason: Reason.HOME_SICK,
+      img: 'crying',
+      label: 'HOME_SICK'
+    },
+    {
+      reason: Reason.HUNGRY,
+      img: 'crying',
+      label: 'HUNGRY'
+    },
+    {
+      reason: Reason.THIRSTY,
+      img: 'crying',
+      label: 'THIRSTY'
+    },
+  ]
+
   constructor(private database: AngularFireDatabase) {
     this.loadKids() // Can load kids straight away as there's no data dep
   }
 
-  update (entity: any, key: string, value: any) {
+  update(entity: any, key: string, value: any) {
     entity[key] = value
-    entity.$ref.update({[key]: value})
+    entity.$ref.update({ [key]: value })
   }
 
   /*🐱‍👤 Kid stuff */
@@ -62,7 +161,7 @@ export class DataProvider {
     this.kidsRef = this.database.list('kids')
 
     this.kidsChangeFeed = this.kidsRef.snapshotChanges()
-    
+
     this.kids = this.kidsChangeFeed.pipe(
       map(snapshots => snapshots.map((action: any): Kid => {
         return {
@@ -74,7 +173,7 @@ export class DataProvider {
     );
   }
 
-  activateKid (kid: Kid) {
+  activateKid(kid: Kid) {
     this.activeKid = kid
   }
 
@@ -106,7 +205,7 @@ export class DataProvider {
     this.assessmentsRef = this.database.list('assessments', ref => ref.orderByChild('kidId').equalTo(this.activeKid.$key))
 
     this.assessmentsChangeFeed = this.assessmentsRef.snapshotChanges()
-    
+
     this.assessments = this.assessmentsChangeFeed.pipe(
       map(snapshots => snapshots.map((action: any): Assessment => {
         return {
@@ -118,21 +217,21 @@ export class DataProvider {
     );
   }
 
-  activateAssessment (assessment: Assessment) {
+  activateAssessment(assessment: Assessment) {
     this.activeAssessment = assessment
   }
 
-  async addAssessment () {
+  async addAssessment() {
     const assessment: Assessment = {
       createDate: new Date().toString(),
       kidId: this.activeKid.$key,
-      mood: 'meh',
-      painLevel: Math.floor(Math.random() * 10),
-      painAreas: []
+      mood: this.moodsData[1].mood,
+	    location: this.locationData[1].location,
+	    reason: this.reasonData[1].reason
     }
 
     const ref = await this.assessmentsRef.push(assessment)
-    
+
     return {
       ...assessment,
       $ref: ref,
