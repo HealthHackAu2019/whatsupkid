@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { DataProvider } from '../../providers/data/data.provider';
-import { SpiritEmojiPage } from '../spirit-emoji/spirit-emoji';
 
 /**
  * Generated class for the WelcomePage page.

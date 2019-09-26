@@ -13,6 +13,6 @@ export class TabsPage {
   tab2Root = 'AboutPage';
   tab4Root = 'KidsPage';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 }

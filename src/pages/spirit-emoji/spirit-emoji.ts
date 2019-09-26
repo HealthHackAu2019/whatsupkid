@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DataProvider } from '../../providers/data/data.provider';
 
 /**
  * Generated class for the SpiritEmojiPage page.
@@ -16,7 +15,7 @@ import { DataProvider } from '../../providers/data/data.provider';
 })
 export class SpiritEmojiPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {

@@ -20,7 +20,7 @@ import { DataProvider } from '../../providers/data/data.provider';
 
 export class LoginPage {
   user = {} as User;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider, private dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider, private alertProvider: AlertProvider, private toastProvider: ToastProvider) {
   }
 
   ionViewDidLoad() {
