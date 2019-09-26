@@ -6,7 +6,7 @@ It attempts to solve the problem of kids struggling to vocalise their symptoms o
 
 # Prereq
 1. Node / NPM
-2. Ionic v3
+2. [Ionic v3](https://ionicframework.com/docs/v3/)
 
 # Getting Started
 1. Clone the project
