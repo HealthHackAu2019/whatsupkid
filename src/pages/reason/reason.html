@@ -15,7 +15,7 @@
     <ion-item>
     </ion-item>
     <ion-row>
-      <ion-col col-12 col-sm-12 col-md-4 col-lg-4 *ngFor="let reason of reasons;" class="reason" (click)="next(reason)">
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-4 *ngFor="let reason of reasons;" class="reason" (click)="next(reason)">
         <img [src]="reason.img" />
       </ion-col>
     </ion-row>

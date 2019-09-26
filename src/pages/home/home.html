@@ -17,7 +17,7 @@
       <ion-input [(ngModel)]="dataProvider.activeKid.name" placholder="What is your name?"></ion-input>
     </ion-item>
     <ion-row>
-      <ion-col col-12 col-sm-12 col-md-4 col-lg-4 *ngFor="let mood of moods;" class="mood" (click)="next(mood)">
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-4 *ngFor="let mood of moods;" class="mood" (click)="next(mood)">
         <p>{{mood.label}}</p>
         <img [src]="mood.img" />
       </ion-col>
