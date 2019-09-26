@@ -4,7 +4,6 @@ import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ToastProvider } from '../../providers/toast/toast';
 import { AlertProvider } from '../../providers/alert/alert';
-import { DataProvider } from '../../providers/data/data.provider';
 /**
  * Generated class for the LoginPage page.
  *
